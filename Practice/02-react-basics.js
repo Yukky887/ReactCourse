@@ -1,19 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>React Basics</title>
-  </head>
-  <body>
-    <div class="js-container"></div>
-
-    <script src="https://unpkg.com/supersimpledev/react.js"></script>
-    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
-
-	<script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
-
-    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
-    <script type="text/babel">
-		const button = <button>hello</button>;
+const button = <button>hello</button>;
 		const paragraph = <p>paragraph of text</p>;
 
 		const todayDate = dayjs().format('MMMM D');
@@ -33,18 +18,16 @@
 			</div>
 		);
 
-		function LoginForm() {
+		function ProductDetails({name, price, discountPrice, imageSrc}) {
 			return (
 				<>
-					<p>Hello, welcome to my website</p>
+					<img src={imageSrc} width="100" />
 					<div>
-						<input placeholder="Email" />
+						<p>{name}</p>
+						{discountPrice ? <del><p>Price: ${price}</p></del> : <p>Price: ${price}</p> }
+						{discountPrice && <p>Discount Price: ${discountPrice}</p>}
+						<button>Add to Cart</button>
 					</div>
-					<div>
-						<input placeholder="Password" type="password" />
-					</div>
-					<button>Login</button>
-					<button>Sign up</button>
 				</>
 			);
 		}
@@ -52,7 +35,9 @@
 		function App() {
 			return (
 				<>
-					<LoginForm />
+					<ProductDetails name="Cotton socks" price={10.90} discountPrice={8.00} imageSrc={"./cotton-socks.png"} />
+					<ProductDetails name="Tennis ball" price={6.90} imageSrc={"./tennis-balls.png"}/>
+					<ProductDetails name="Plain T-shirt" price={7.99} imageSrc={"./plain-t-shirt.png"}/>
 				</>
 			);
 			
@@ -70,6 +55,3 @@
 		
 		
       	ReactDOM.createRoot(container).render(<App />);
-    </script>
-  </body>
-</html>
