@@ -34,8 +34,6 @@ function CounterApp() {
 }
 
 function App() {
-
-
 	return (
 		<>
 			<CounterApp />

@@ -16,13 +16,20 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
 		function ChatInput({ chatMessages, setChatMessages }) {
-			const [inputText, setInputText] = React.useState('');
-
+			const [inputText, setInputText] = React.useState('');			
+			const [isLoading, setIsLoading] = React.useState(false);
+			
 			function saveInputText(event) {
 				setInputText(event.target.value);
 			}
+			
+			async function sendMessage() {
+				if(isLoading) {
+					return;
+				}
 
-			function sendMessage() {
+				setIsLoading(true);
+
 				const newChatMessages = ([
 					...chatMessages,
 					{
@@ -31,22 +38,31 @@
 						id: crypto.randomUUID()
 					}					
 				]);
-
 				setChatMessages(newChatMessages);
 
-				const response = Chatbot.getResponse(inputText);
+				setChatMessages([
+					...newChatMessages,
+					{
+						message: "Loading...",
+						sender: 'robot',
+						id: crypto.randomUUID()
+					},	
+				]);
+
+				const response = await Chatbot.getResponseAsync(inputText);
 				setChatMessages([
 					...newChatMessages,
 					{
 						message: response,
 						sender: 'robot',
 						id: crypto.randomUUID()
-					}					
+					},		
 				]);
 
-				setInputText('');
-			}
+				setIsLoading(false);
 
+			}
+			
 			return (
 				<div>
 					<input 
@@ -54,9 +70,24 @@
 						size="30"
 						onChange={saveInputText}
 						value={inputText}
+						onKeyDown={(event) => {
+							if( event.key === 'Enter' && inputText !== "" && !isLoading) {
+								sendMessage();
+								setInputText('');
+							} 
+
+							if( event.key === "Escape") {
+								setInputText('');
+							}
+						}}
 					/>
 					<button 
-						onClick={sendMessage}
+						onClick={() => {
+							if(inputText !== ""){
+								sendMessage();
+								setInputText('');	
+							}
+						}}
 					>Send</button>
 				</div>
 			);
