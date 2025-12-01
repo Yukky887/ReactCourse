@@ -18,6 +18,7 @@ function ChatMessages({ chatMessages }) {
                         sender={chatMessage.sender}
                         time={chatMessage.time}
                         key={chatMessage.id}
+                        isSpinner={chatMessage.isSpinner}
                     />
                 ))
             )}

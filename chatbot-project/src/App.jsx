@@ -5,15 +5,25 @@ import ChatMessages from './components/ChatMessages'
 import './App.css'
 
 function App() {
-	const [chatMessages, setChatMessages] = useState([]);
+	const [chatMessages, setChatMessages] = useState(() =>{
+		try {
+			const savedMessages = localStorage.getItem('messages');
+			return savedMessages ? JSON.parse(savedMessages) : [];
+		} catch {
+			return [];
+		}
+	});
 
 	useEffect(() => {
-		console.log("addResponses")
 		Chatbot.addResponses({
 			"q": "Salam",
 			"boobs": "hehehe;)"
 		});
 	}, []);
+
+	useEffect(() => {
+		localStorage.setItem('messages', JSON.stringify(chatMessages));
+	}, [chatMessages]);
 
 	return (
 		<div className="app-container">
