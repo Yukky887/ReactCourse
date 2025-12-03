@@ -1,4 +1,4 @@
-import "./CheckoutHeader.css";
+import "./CheckoutPage.css";
 import { CheckoutHeader } from "./CheckoutHeader.jsx";
 
 export function CheckoutPage() {
@@ -6,6 +6,7 @@ export function CheckoutPage() {
         <>
             <title>Checkout</title>
 
+            <link rel="icon" type="image/svg+xml" href="./images/cart-favicon.png" />
 
             <CheckoutHeader />
 
