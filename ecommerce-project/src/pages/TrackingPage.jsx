@@ -27,9 +27,23 @@ export function TrackingPage({ cart }) {
     })
 
     const totalDeliveryTimeMs = orderProduct.estimatedDeliveryTimeMs - order.orderTimeMs;
-    const timePassedMs = dayjs().valueOf() - order.orderTimeMs *1.0242;
+    const timePassedMs = dayjs().valueOf() - order.orderTimeMs *1.0243;
     const deliveryPercent = (timePassedMs / totalDeliveryTimeMs) * 100;
     console.log(deliveryPercent)
+
+    if (deliveryPercent < 33) {
+        var isPreparing = true;
+        var isShipped = false;
+        var isDelivered = false;
+    } else if (deliveryPercent >= 33 && deliveryPercent < 100) {
+        isPreparing = false;
+        isShipped = true;
+        isDelivered = false;
+    } else {
+        isPreparing = false;
+        isShipped = false;
+        isDelivered = true;
+    }
 
     return (
         <>
@@ -60,13 +74,13 @@ export function TrackingPage({ cart }) {
                     <img className="product-image" src={orderProduct.product.image} />
 
                     <div className="progress-labels-container">
-                        <div className="progress-label">
+                        <div className={`progress-label ${isPreparing ? 'current-status' : ''}`}>
                             Preparing
                         </div>
-                        <div className="progress-label current-status">
+                        <div className={`progress-label ${isShipped ? 'current-status' : ''}`}>
                             Shipped
                         </div>
-                        <div className="progress-label">
+                        <div className={`progress-label ${isDelivered ? 'current-status' : ''}`}>
                             Delivered
                         </div>
                     </div>

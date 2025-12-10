@@ -3,12 +3,12 @@ import { Header } from '../components/Header.jsx';
 
 import './NotFound.css';
 
-export function NotFound() {
+export function NotFound({ cart }) {
     return (
         <>
             <title>Page Not Found</title>
 
-            <Header />
+            <Header cart={cart}/>
 
             <div className="page">
 
