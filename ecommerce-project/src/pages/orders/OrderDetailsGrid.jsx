@@ -4,7 +4,6 @@ import buyAgainIcon from '../../assets/images/icons/buy-again.png';
 import axios from "axios";
 
 export function OrderDetailsGrid({ order, loadCart }) {
-    console.log('OrderDetailsGrid props:', { order, loadCart });
     return (
         <div className="order-details-grid">
             {order.products.map((orderProduct) => {
