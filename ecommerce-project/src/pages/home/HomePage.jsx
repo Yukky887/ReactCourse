@@ -16,6 +16,8 @@ export function HomePage({ cart, loadCart}) {
         getHomeData();
     }, []);
 
+    window.axios = axios;
+
     return (
         <>
             <title>Ecommerce Project</title>
