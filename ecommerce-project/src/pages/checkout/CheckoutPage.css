@@ -104,6 +104,10 @@
   margin-right: auto;
 }
 
+.checkout-page .quantity-input {
+  width: 50px;
+}
+
 .checkout-page .product-name {
   font-weight: 700;
   margin-bottom: 8px;
