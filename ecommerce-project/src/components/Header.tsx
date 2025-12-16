@@ -6,11 +6,19 @@ import mobileLogo from '../assets/images/mobile-logo-white.png';
 import cartIcon from '../assets/images/icons/cart-icon.png';
 import searchIcon from '../assets/images/icons/search-icon.png';
 
+type HeaderProps = {
+    cart: {
+        productId: string,
+        quantity: number,
+        deliveryOptionId: string;
+    }[];
+};
 
-export function Header({ cart }) {
+
+export function Header({ cart }: HeaderProps) {
     const [searchParams] = useSearchParams();
     const search = searchParams.get('search');
-    
+
     const [searchQuery, setSearchQuery] = useState(search || "");
 
     const navigate = useNavigate()
