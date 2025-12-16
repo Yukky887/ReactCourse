@@ -1,0 +1,47 @@
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+.not-found-main {
+  flex: 1;
+  padding-top: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.not-found-card {
+  background-color: white;
+  padding: 40px 30px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  max-width: 420px;
+}
+
+.not-found-title {
+  font-size: 56px;
+  margin: 0 0 10px;
+  color: rgb(8, 79, 45);
+}
+
+.not-found-text {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.not-found-button {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: 4px;
+  background-color: rgb(8, 79, 45);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.not-found-button:hover {
+  background-color: rgb(6, 60, 34);
+}
